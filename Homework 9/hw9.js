@@ -28,7 +28,11 @@ function draw() {
     image(img,x,y,100,100);
     playerController(7);
     image(enemy,enemyX,enemyY,62,75);
-    enemyChase(1);
+    enemyChase(3);
+    image(jessie,jessieX,jessieY,64,120);
+    jessieChase(2);
+    image(james,jamesX,jamesY,47,120);
+    jamesChase(1);
     //rect(x,y,50,50);
     
 
@@ -46,7 +50,7 @@ function playerController(speed) {
         }
        else if(key == "d")
         {
-           if(x < (canvasWidth - 50)){
+           if(x < (canvasWidth - 100)){
                  x+=speed;
            } 
         }
@@ -58,7 +62,7 @@ function playerController(speed) {
         }
        else if(key == "s")
         {
-            if(y < (canvasHeight - 50)){
+            if(y < (canvasHeight - 100)){
                 y+=speed;
             }
         }
@@ -78,5 +82,37 @@ function enemyChase(speed){
     }
     if(enemyY < y){
         enemyY += speed;
+    }
+}
+
+function jessieChase(speed){
+    //chase player
+    if(jessieX > x){
+        jessieX -= speed;
+    }
+    if(jessieX < x){
+        jessieX += speed;
+    }
+    if(jessieY > y){
+        jessieY -= speed;
+    }
+    if(jessieY < y){
+        jessieY += speed;
+    }
+}
+
+function jamesChase(speed){
+    //chase player
+    if(jamesX > x){
+        jamesX -= speed;
+    }
+    if(jamesX < x){
+        jamesX += speed;
+    }
+    if(jamesY > y){
+        jamesY -= speed;
+    }
+    if(jamesY < y){
+        jamesY += speed;
     }
 }
