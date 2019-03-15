@@ -7,7 +7,7 @@ var jessieX = 300
 var jessieY = 600
 var jamesX = 700
 var jamesY = 600
-var canvasWidth = 1000
+var canvasWidth = 1200
 var canvasHeight = 800
 
 function preload() {
@@ -33,11 +33,7 @@ function draw() {
     jessieChase(2);
     image(james,jamesX,jamesY,47,120);
     jamesChase(1);
-    //rect(x,y,50,50);
     
-
-    //enemyChase(2);
-
 }
 // controlls with boundaries
 function playerController(speed) {
