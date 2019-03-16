@@ -28,13 +28,12 @@ function draw() {
     image(img,x,y,100,100);
     playerController(7);
     image(enemy,enemyX,enemyY,62,75);
-    enemyChase(3);
     image(jessie,jessieX,jessieY,64,120);
-    jessieChase(2);
     image(james,jamesX,jamesY,47,120);
-    jamesChase(1);
+    enemyChase(3,2,1);
     
 }
+
 // controlls with boundaries
 function playerController(speed) {
     if(keyIsPressed){
@@ -65,22 +64,51 @@ function playerController(speed) {
     }
 }
 
-function enemyChase(speed){
-    //chase player
+function enemyChase(mSpeed,jsSpeed,jmSpeed){
+    //Meowth
     if(enemyX > x){
-        enemyX -= speed;
+        enemyX -= mSpeed;
     }
     if(enemyX < x){
-        enemyX += speed;
+        enemyX += mSpeed;
     }
     if(enemyY > y){
-        enemyY -= speed;
+        enemyY -= mSpeed;
     }
     if(enemyY < y){
-        enemyY += speed;
+        enemyY += mSpeed;
+    }
+    //Jessie
+    if(jessieX > x){
+        jessieX -= jsSpeed;
+    }
+    if(jessieX < x){
+        jessieX += jsSpeed;
+    }
+    if(jessieY > y){
+        jessieY -= jsSpeed;
+    }
+    if(jessieY < y){
+        jessieY += jsSpeed;
+    }
+    //James
+    if(jamesX > x){
+        jamesX -= jmSpeed;
+    }
+    if(jamesX < x){
+        jamesX += jmSpeed;
+    }
+    if(jamesY > y){
+        jamesY -= jmSpeed;
+    }
+    if(jamesY < y){
+        jamesY += jmSpeed;
     }
 }
 
+
+
+// enemyChase now covers these two chase functions
 function jessieChase(speed){
     //chase player
     if(jessieX > x){
