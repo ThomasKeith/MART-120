@@ -66,16 +66,16 @@ function playerController(speed) {
 
 function enemyChase(mSpeed,jsSpeed,jmSpeed){
     //Meowth
-    if(enemyX > x){
+    if(enemyX > x && enemyX > 0){
         enemyX -= mSpeed;
     }
-    if(enemyX < x){
+    if(enemyX < x && enemyX < (canvasWidth - 62)) {
         enemyX += mSpeed;
     }
-    if(enemyY > y){
+    if(enemyY > y && enemyY > 0) {
         enemyY -= mSpeed;
     }
-    if(enemyY < y){
+    if(enemyY < y && enemyY < (canvasHeight - 75)) {
         enemyY += mSpeed;
     }
     //Jessie
