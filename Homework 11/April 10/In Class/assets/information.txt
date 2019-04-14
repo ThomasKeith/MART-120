@@ -4,7 +4,7 @@ assets/mario.png
 100
 100
 assets/pikachu.png
-200
-200
+750
+400
 100
 100

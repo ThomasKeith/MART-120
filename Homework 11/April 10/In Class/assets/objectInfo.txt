@@ -1,0 +1,5 @@
+assets/finishLine.png
+1000
+800
+100
+100
