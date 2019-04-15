@@ -1,4 +1,4 @@
-class Object
+class Obstacle
 {
     // this sets our properties
     constructor(imagePath, x, y, h, w)

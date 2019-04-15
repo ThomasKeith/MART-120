@@ -1,17 +1,18 @@
 let result;
 var characters = [];
-//var objects = [];
+var objects = [];
 var myFont;
 var count = 0;
 var index = 0;
 var character1, character2;
-//var finishLine;
+var finishLine;
 var direction = "";
 var Lives = 3
+
 function preload() {
   myFont = loadFont("assets/AvenirLTStd-Book.otf");
   result = loadStrings('assets/information.txt');
-  //objResult = loadStrings('assets/objectInfo.txt');
+  objResult = loadStrings('assets/objectInfo.txt');
   
 }
 // set up the canvas for display
@@ -23,8 +24,8 @@ function setup() {
     character1.load();
     character2 = new Character(result[5], int(result[6]), int(result[7]), int(result[8]), int(result[9]));
     character2.load();
-    //finishLine = new Object(objResult[0], int(objResult[1]), int(objResult[2]), int(objResult[3]), int(objResult[4]));
-
+    finishLine = new Obstacle(objResult[0], int(objResult[1]), int(objResult[2]), int(objResult[3]), int(objResult[4]));
+    finishLine.load();
     
     //console.log(result.length);
    /* for(var i = 0; i < result.length; i++)
@@ -48,7 +49,7 @@ function draw() {
     character1.display();
     character2.display();
     enemyChase(1);
-    //finishLine.display();
+    finishLine.display();
 
     // Lives Display
     textSize(32);
@@ -162,6 +163,8 @@ function playerController()
 }
 function enemyChase(speed)
 {
+  if(Lives > 0)
+  {
     if(character2.X > character1.X)
     {
       character2.addX = -speed;
@@ -178,6 +181,7 @@ function enemyChase(speed)
     {
       character2.addY = speed;
     }
+   }
 }
 
 // this just checks collision
