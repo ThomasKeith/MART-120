@@ -6,6 +6,7 @@ var count = 0;
 var index = 0;
 var character1, character2;
 var finishLine;
+var chainChomp, chainChomp2, chainChomp3;
 var direction = "";
 var Lives = 3
 
@@ -26,6 +27,12 @@ function setup() {
     character2.load();
     finishLine = new Obstacle(objResult[0], int(objResult[1]), int(objResult[2]), int(objResult[3]), int(objResult[4]));
     finishLine.load();
+    chainChomp = new Obstacle(objResult[5], int(objResult[6]), int(objResult[7]), int(objResult[8]), int(objResult[9]));
+    chainChomp.load();
+    chainChomp2 = new Obstacle(objResult[5], int(objResult[11]), int(objResult[12]), int(objResult[8]), int(objResult[9]));
+    chainChomp2.load();
+    chainChomp3 = new Obstacle(objResult[5], int(objResult[14]), int(objResult[15]), int(objResult[8]), int(objResult[9]));
+    chainChomp3.load();
     
     //console.log(result.length);
    /* for(var i = 0; i < result.length; i++)
@@ -50,7 +57,22 @@ function draw() {
     character2.display();
     enemyChase(1);
     finishLine.display();
-
+    //push();
+    //translate(800,700);
+    //rotate(millis() / 1000);
+    chainChomp.display();
+    //pop();
+    //push();
+    //translate(600,75);
+    //rotate(millis() / 1000);
+    chainChomp2.display();
+    //pop();
+    //push();
+    //translate(350,400);
+    //rotate(millis() / 1000);
+    chainChomp3.display();
+    //pop();
+  
     // Lives Display
     textSize(32);
     text('Lives:',630,45);
@@ -97,7 +119,7 @@ function playerController()
       if(hasCollided(character1, character2))
       {
          // make sure they don't over run each other
-          if(Lives > 0)
+          if(Lives > 0 && Lives < 4)
           {
             Lives = Lives -1;
           }
@@ -122,7 +144,98 @@ function playerController()
            character1.addX = 150;
          }
       }
-        
+
+      if(hasCollided(character1, chainChomp))
+      {
+         // make sure they don't over run each other
+          if(Lives > 0 && Lives < 4)
+          {
+            Lives = Lives -1;
+          }
+         if(direction == "up")
+         {
+           moveDown();
+           character1.addY = 150;
+         }
+         else if(direction == "down")
+         {
+           moveUp();
+           character1.addY = -150;
+         }
+         else if(direction == "right")
+         {
+           moveLeft();
+           character1.addX = -150;
+         }
+         else if(direction == "left")
+         {
+           moveRight();
+           character1.addX = 150;
+         }
+      }
+
+      if(hasCollided(character1, chainChomp2))
+      {
+         // make sure they don't over run each other
+          if(Lives > 0 && Lives < 4)
+          {
+            Lives = Lives -1;
+          }
+         if(direction == "up")
+         {
+           moveDown();
+           character1.addY = 150;
+         }
+         else if(direction == "down")
+         {
+           moveUp();
+           character1.addY = -150;
+         }
+         else if(direction == "right")
+         {
+           moveLeft();
+           character1.addX = -150;
+         }
+         else if(direction == "left")
+         {
+           moveRight();
+           character1.addX = 150;
+         }
+      }
+
+      if(hasCollided(character1, chainChomp3))
+      {
+         // make sure they don't over run each other
+          if(Lives > 0 && Lives < 4)
+          {
+            Lives = Lives -1;
+          }
+         if(direction == "up")
+         {
+           moveDown();
+           character1.addY = 150;
+         }
+         else if(direction == "down")
+         {
+           moveUp();
+           character1.addY = -150;
+         }
+         else if(direction == "right")
+         {
+           moveLeft();
+           character1.addX = -150;
+         }
+         else if(direction == "left")
+         {
+           moveRight();
+           character1.addX = 150;
+         }
+      }
+       
+      if(hasCollided(character1,finishLine))
+      {
+        Lives = "WINNER";
+      }
            
     }
   }

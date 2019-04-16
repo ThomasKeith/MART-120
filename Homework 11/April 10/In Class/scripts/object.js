@@ -47,6 +47,7 @@ class Obstacle
         return this.image;
     }
 
+
     // this function just loads the image from the file path
     load()
     {
@@ -56,5 +57,11 @@ class Obstacle
     display()
     {
         image(this.image,this.x, this.y, this.w,this.h);
+    }
+
+    rotate()
+    {
+        angleMode(DEGREES);
+        rotate(30);
     }
 }

@@ -1,5 +1,19 @@
 assets/finishLine.png
-1000
+1100
 400
 100
 100
+assets/Chain_Chomp.png
+800
+700
+100
+200
+CHAIN CHOMP 2
+600
+75
+CHAIN CHOMP 3
+350
+400
+ORIGIN POINT (will be translated later)
+50
+-25
