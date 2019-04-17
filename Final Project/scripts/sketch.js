@@ -1,3 +1,6 @@
+let result;
+var enemies = [];
+var zombie;
 
 
 
@@ -5,26 +8,34 @@
 
 
 
+function preload()
+{
+    result = loadStrings('assets/enemy.txt');
+}
 
-function preload(){
+function setup() 
+{
+
+    createCanvas(900, 800);
+    fill(0,120,100);
+    background(0);
+    zombie = new Enemy(result[0], int(result[1]), int(result[2]), int(result[3]), int(result[4]));
+    zombie.load();
 
 }
 
-function setup() {
-
-    createCanvas(1600, 900, WEBGL);
-    background(0);
-    //fill(0,0,55);
-
-}
-
-function draw() {
+function draw() 
+{
 
     background(0);
-    triangle(400,300,350,400,450,350);
+  //  push();
+    translate(width/2, height/2);
+    playerController();
+    rect(-25,-25,50,50);
+  //  pop();
+    zombie.display();
     
-
-
+    
 }
 
 // needs to rotate main character up
@@ -35,6 +46,25 @@ function faceUp()
 
 function rotate90()
 {
-    rotate(PI, 90);
+    rotate(90);
+}
+
+function playerController()
+{
+    if(keyIsPressed)
+    {
+        if (key == "a") {
+            
+        }
+        if (key == "w") {
+
+        }
+        if (key == "s") {
+
+        }
+        if (key == "d") {
+            rotate90();
+        }
+    }
 }
 
