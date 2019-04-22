@@ -7,7 +7,10 @@ var isFiringLEFT = false;
 var isFiringRIGHT = false;
 var projectileY = 400
 var projectileX = 450
+var zombieX = 425
+var zombieY = 500
 var Lives = 3
+var Score = 0
 function preload()
 {
     result = loadStrings('assets/enemy');
@@ -20,7 +23,7 @@ function setup()
     createCanvas(900, 800);
     fill(0,120,100);
     background(0);
-    zombie = new Enemy(result[0], int(result[1]), int(result[2]), int(result[3]), int(result[4]));
+    zombie = new Enemy(result[0], zombieX, zombieY, int(result[3]), int(result[4]));
     zombie.load();
     flower = new Flower(flowerResult[0], int(flowerResult[1]), int(flowerResult[2]), int(flowerResult[3]), int(flowerResult[4]));
     flower.load();
@@ -32,11 +35,16 @@ function draw()
 {
 
     background(0);
+
     // Life Counter
     textSize(32);
     text('Lives',620,30);
     text(Lives,750,30);
     fill(255,255,255);
+
+    // Scoreboard
+    text('Score:', 100,30);
+    text(Score, 220,30);
 
     // Game Over Screen
     if(Lives < 1)
@@ -46,6 +54,7 @@ function draw()
         fill(255,0,0);
         text('GAME OVER', 400,300);
     }
+
     push();
     translate(400, 350);
     flower.display();
@@ -53,7 +62,17 @@ function draw()
     enemyChase(1);
     zombie.display();
     playerController();
-   // reduceLives();
+    reduceLives();
+
+   if(projectileCollided(zombie) == true)
+   {
+       if(Lives > 0)
+       {
+           Score++;
+           resetProjectiles();
+           resetZombie();
+       }
+   }
     
 }
 
@@ -180,27 +199,32 @@ function resetProjectiles()
     projectileY = 400
 }
 
+function resetZombie()
+{
+    zombieX = 425
+    zombieY = 0
+}
 function enemyChase(speed)
 {
-    if(hasCollided(flower,zombie) == false)
+  // if(hasCollided(flower,zombie) == false)
+   // {
+        if(zombieX > 450)
     {
-        if(zombie.X > flower.X)
+        zombieX -=speed;
+    }
+        if(zombieX < 450)
     {
-        zombie.addX = -speed;
+        zombieX +=speed;
     }
-        if(zombie.X < flower.x)
+         if(zombieY > 400)
     {
-        zombie.addX = speed;
+        zombieY -=speed;
     }
-         if(zombie.Y > flower.y)
+        if(zombieY < 400)
     {
-        zombie.addY = -speed;
+        zombieY +=speed;
     }
-        if(zombie.Y < flower.y)
-    {
-        zombie.addY = speed;
-    }
-    }
+  //  }
     
 }
 
@@ -210,10 +234,12 @@ function reduceLives()
     {
         if(Lives > 0)
         {
-            Lives -=1;
+            Lives--;
+            resetZombie();
         }
     }
 }
+
 
 function hasCollided(object1, object2) {
     return !(
@@ -221,5 +247,14 @@ function hasCollided(object1, object2) {
         (object1.Y > (object2.Y + object2.H)) ||
         ((object1.X + object1.W) < object2.X) ||
         (object1.X > (object2.X + object2.W))
+    );
+}
+
+function projectileCollided(object1) {
+    return !(
+        ((object1.Y + object1.H) < (projectileY)) ||
+        (object1.Y > (projectileY + 15)) ||
+        ((object1.X + object1.W) < projectileX) ||
+        (object1.X > (projectileX + 15))
     );
 }
