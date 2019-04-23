@@ -20,6 +20,16 @@ class Enemy
         return this.y;
     }
 
+    setX(value)
+    {
+        this.x = value;
+    }
+
+    setY(value)
+    {
+        this.y = value;
+    }
+
     // these are setters so we can change information in our object
     set addX(value)
     {

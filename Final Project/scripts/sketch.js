@@ -8,7 +8,7 @@ var isFiringRIGHT = false;
 var projectileY = 400
 var projectileX = 450
 var zombieX = 425
-var zombieY = 500
+var zombieY = 0
 var Lives = 3
 var Score = 0
 function preload()
@@ -201,28 +201,28 @@ function resetProjectiles()
 
 function resetZombie()
 {
-    zombieX = 425
-    zombieY = 0
+    zombie.setX(random(0,800));
+    zombie.setY(random(0,700));
 }
 function enemyChase(speed)
 {
   // if(hasCollided(flower,zombie) == false)
    // {
-        if(zombieX > 450)
+        if(zombie.X > 450)
     {
-        zombieX -=speed;
+        zombie.addX =-speed;
     }
         if(zombieX < 450)
     {
-        zombieX +=speed;
+        zombie.addX = speed;
     }
-         if(zombieY > 400)
+         if(zombie.Y > 400)
     {
-        zombieY -=speed;
+        zombie.addY = -speed;
     }
-        if(zombieY < 400)
+        if(zombie.Y < 400)
     {
-        zombieY +=speed;
+        zombie.addY =speed;
     }
   //  }
     
@@ -230,14 +230,14 @@ function enemyChase(speed)
 
 function reduceLives()
 {
-    if(hasCollided(zombie, flower) == true)
+    if(zombieX == 425 && zombieY == 375)
     {
         if(Lives > 0)
         {
             Lives--;
             resetZombie();
         }
-    }
+    } 
 }
 
 
