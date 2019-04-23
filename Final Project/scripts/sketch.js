@@ -1,4 +1,5 @@
 let result;
+let img;
 var enemies = [];
 var zombie, flower;
 var isFiringUP = false;
@@ -15,6 +16,8 @@ function preload()
 {
     result = loadStrings('assets/enemy');
     flowerResult = loadStrings('assets/flower.txt');
+   // img = loadImage('assets/flower.png');
+
 }
 
 function setup() 
@@ -35,12 +38,18 @@ function draw()
 {
 
     background(0);
+   // image(img,400,350,100,100);
 
     // Life Counter
     textSize(32);
     text('Lives',620,30);
     text(Lives,750,30);
     fill(255,255,255);
+   // print(zombieX);
+   // print(zombieY);
+    print(zombie.X);
+    print(zombie.Y);
+
 
     // Scoreboard
     text('Score:', 100,30);
@@ -55,10 +64,10 @@ function draw()
         text('GAME OVER', 400,300);
     }
 
-    push();
-    translate(400, 350);
+  //  push();
+//  translate(400, 350);
     flower.display();
-    pop();
+  //  pop();
     enemyChase(1);
     zombie.display();
     playerController();
@@ -210,9 +219,9 @@ function enemyChase(speed)
    // {
         if(zombie.X > 450)
     {
-        zombie.addX =-speed;
+        zombie.addX = -speed;
     }
-        if(zombieX < 450)
+        if(zombie.X < 450)
     {
         zombie.addX = speed;
     }
@@ -230,7 +239,7 @@ function enemyChase(speed)
 
 function reduceLives()
 {
-    if(zombieX == 425 && zombieY == 375)
+    if(hasCollided(flower,zombie) == true)
     {
         if(Lives > 0)
         {
@@ -258,3 +267,10 @@ function projectileCollided(object1) {
         (object1.X > (projectileX + 15))
     );
 }
+
+/* Known Issues:
+
+    1. You can only shoot in four directions.
+    2. Sometimes the Zombie spawns on top of the flower.
+
+*/
