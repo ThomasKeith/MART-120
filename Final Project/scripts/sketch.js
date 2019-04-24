@@ -10,8 +10,10 @@ var projectileY = 400
 var projectileX = 450
 var zombieX = 425
 var zombieY = 0
-var Lives = 3
+var Lives = 10
 var Score = 0
+
+
 function preload()
 {
     result = loadStrings('assets/enemy');
@@ -47,8 +49,8 @@ function draw()
     fill(255,255,255);
    // print(zombieX);
    // print(zombieY);
-    print(zombie.X);
-    print(zombie.Y);
+   // print(zombie.X);
+   // print(zombie.Y);
 
 
     // Scoreboard
